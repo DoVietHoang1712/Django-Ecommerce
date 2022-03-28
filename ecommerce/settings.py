@@ -105,10 +105,10 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'ex2',
+        'NAME': 'ecommerce',
         'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PASSWORD': 'password',
+        'HOST': '18.141.13.60',   # Or an IP Address that your DB is hosted on
         'PORT': '3306'
     }
 }

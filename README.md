@@ -1,10 +1,16 @@
+WORK FLOW
+1. checkout sang main
+2. git pull origin main
+3. check về nhánh feature sẽ làm (fe/login)
+4. git merge main
+
+
 làm lần đầu
 1. cài django
 2. cài pipenv
     pip install pipenv
 3. pipenv shell
 4. pipenv lock
-5. vào chỉnh setting mysql đổi mật khẩu, username, dbname
 6. python manage.py makemigrations
 7. python manage.py migrate
 
