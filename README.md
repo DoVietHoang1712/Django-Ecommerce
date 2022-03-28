@@ -3,6 +3,8 @@ WORK FLOW
 2. git pull origin main
 3. check về nhánh feature sẽ làm (fe/login)
 4. git merge main
+5. làm xong thì push lên + tạo merge request + tự merge
+6. quay lại bước 1
 
 
 làm lần đầu
