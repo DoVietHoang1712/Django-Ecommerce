@@ -11,8 +11,6 @@ làm lần đầu
     pip install pipenv
 3. pipenv shell
 4. pipenv lock
-6. python manage.py makemigrations
-7. python manage.py migrate
 
 với các lần vào sau
 1. pipenv shell
