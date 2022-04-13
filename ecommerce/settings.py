@@ -112,7 +112,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'ecommerce',
         'USER': 'root',
-        'PASSWORD': 'password',
+        'PASSWORD': 'ecommerce',
         'HOST': '18.141.13.60',   # Or an IP Address that your DB is hosted on
         'PORT': '3306'
     }
