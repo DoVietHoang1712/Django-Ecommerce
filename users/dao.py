@@ -7,7 +7,6 @@ class UserDAO:
 
 
 class UserDAOImp(UserDAO):
-    def get_user_information(self, user,*args):
-        print(user)
+    def get_user_information(self, user):
         serializer = UserSerializer(user)
         return serializer.data

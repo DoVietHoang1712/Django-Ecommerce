@@ -31,6 +31,7 @@ class ProductItem(models.Model):
     image = models.TextField(max_length=10000)
     description = models.TextField(max_length=10000)
     price = models.FloatField()
+    title = models.TextField(max_length=200, default="")
     book = models.OneToOneField(Book, on_delete=models.CASCADE, null=True)
     electronic = models.OneToOneField(Electronic, on_delete=models.CASCADE, null=True)
     clothes = models.OneToOneField(Clothes, on_delete=models.CASCADE, null=True)
