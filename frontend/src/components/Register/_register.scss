@@ -7,10 +7,10 @@
 .register {
   // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   .cover {
-    width: 35%;
+    width: 500px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin-top: 30px;
-    border-radius: 6px;
+    border-radius: 16px;
     margin-bottom: 50px;
   }
   &__form-register {
@@ -19,7 +19,7 @@
       width: 100%;
       input {
         @include input();
-        padding: 0px 10px;
+        padding: 10px 12px;
       }
     }
     &__btn {
