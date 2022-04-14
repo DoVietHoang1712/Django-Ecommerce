@@ -6,15 +6,11 @@ import Router from './routes/Router';
 function App() {
   return (
     <BrowserRouter>
-      {/* <div className="App container">
-        <Navbar/>
-        <Routes>
-          <Route path="/sign-up" exact element={<Register/>} />
-        </Routes>
-      </div> */}
-      <div>
-        <Navbar/>
-        <Router/>
+      <div className="App">
+        <div>
+          <Navbar />
+          <Router />
+        </div>
       </div>
     </BrowserRouter>
   );

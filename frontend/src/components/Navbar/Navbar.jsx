@@ -3,18 +3,6 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div>
-      {/* <nav className="navbar navbar-expand-sm bg-light navbar-dark">
-        <ul className="navbar-nav">
-          <li className="nav-item m-1">
-            <NavLink className="btn btn-light btn-outline-primary" to="home">
-              Home
-            </NavLink>
-            <NavLink className="btn btn-light btn-outline-primary" to="sign-up">
-              Sign up
-            </NavLink>
-          </li>
-        </ul>
-      </nav> */}
       <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
         <button
           className="navbar-toggler"
