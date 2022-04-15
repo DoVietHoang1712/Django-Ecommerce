@@ -1,16 +1,15 @@
 from product.dao import BookDAO, ClothesDAO, ElectronicDAO, LaptopDAO, ProductDAO
-from product.models import ProductItem
-from product.serializers import ProductItemSerializer
+from product.models import Book, ProductItem
+from product.serializers import BookSerializer, ProductItemSerializer
 
 class BookDAOImp(BookDAO):
     def get_all(self):
-        data = ProductItem.objects.exclude(book__isnull=False)
-        return ProductItemSerializer(data, many=True).data
+        data = Book.objects.get()
+        return BookSerializer(data).data
 
     def search_by_name(self, name):
-        data = ProductItem.objects.exclude(book__isnull=False)
-        data = data.filter(title=name)
-        return ProductItemSerializer(data, many=True).data
+        data = Book.objects.get(name=name)
+        return BookSerializer(data).data
 
 class ClothesDAOImp(ClothesDAO):
     def get_all(self):
