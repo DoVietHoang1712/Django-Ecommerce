@@ -1,18 +1,15 @@
 import './App.scss';
-import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
-import Register from './components/Register/Register';
+import { BrowserRouter} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Router from './routes/Router';
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <div>
-          <Navbar />
-          <Router />
-        </div>
+        <Navbar />
+        <Router />
       </div>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 export default App;

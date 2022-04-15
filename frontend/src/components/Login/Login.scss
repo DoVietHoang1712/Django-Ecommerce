@@ -29,6 +29,8 @@
         @include input();
         background-color: rgb(233, 49, 49);
         color: white;
+        padding: 8px 12px;
+        margin-top: 10px;
       }
       button:hover {
         background-color: rgb(231, 74, 74);
