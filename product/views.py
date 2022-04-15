@@ -2,29 +2,24 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, renderer_classes
-from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from .dao_imp import BookDAOImp, ClothesDAOImp, ElectronicDAOImp, LaptopDAOImp
 # Create your views here.
 
 class BookAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
 
-    @api_view(['GET'])
-    @renderer_classes((TemplateHTMLRenderer, JSONRenderer))
-    def list(request, *args, **kwargs):
+    def list(self,request, *args, **kwargs):
         dao = BookDAOImp()
         name = request.query_params.get('name', None)
         if name:
             data = dao.search_by_name(name)
+            print(data)
             return Response(data)
         return Response(dao.get_all())
     
-    @api_view(['GET'])
-    @renderer_classes((TemplateHTMLRenderer, JSONRenderer))
-    def retrieve(request, *args, **kwargs):
+    def retrieve(self,request, *args, **kwargs):
         dao = BookDAOImp()
-        data = dao.get_by_id(kwargs['id'])
+        data = dao.get_by_id(kwargs['pk'])
         print(data)
         return Response(data)
 
@@ -40,7 +35,7 @@ class LaptopAPIViewSet(ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         dao = LaptopDAOImp()
-        return Response(dao.get_by_id(kwargs['id']))
+        return Response(dao.get_by_id(kwargs['pk']))
 
 class ElectronicAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -54,7 +49,7 @@ class ElectronicAPIViewSet(ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         dao = ElectronicDAOImp()
-        return Response(dao.get_by_id(kwargs['id']))
+        return Response(dao.get_by_id(kwargs['pk']))
 
 class ClothesAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -68,4 +63,4 @@ class ClothesAPIViewSet(ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         dao = ClothesDAOImp()
-        return Response(dao.get_by_id(kwargs['id']))
+        return Response(dao.get_by_id(kwargs['pk']))
