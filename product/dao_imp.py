@@ -1,4 +1,3 @@
-from matplotlib.pyplot import title
 from product.dao import BookDAO, ClothesDAO, ElectronicDAO, LaptopDAO, ProductDAO
 from product.models import ProductItem
 from product.serializers import ProductItemSerializer
