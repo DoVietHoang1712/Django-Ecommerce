@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Login.scss';
 import axios from 'axios';
-import { useEffect, useState } from 'react'
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Context } from '../../store/Context';
 
 const Register = () => {
     const [status, setStatus] = useState(1)
@@ -13,9 +13,9 @@ const Register = () => {
     const [post, setPost] = useState({ username: '', password: '' })
     const navigate = useNavigate();
 
+    const [state, dispatch] = useContext(Context);
     const handleLogin = () => {
         setPost({ username: username, password: password })
-
     }
 
     // useEffect(() => {
@@ -56,7 +56,8 @@ const Register = () => {
                 };
                 const res = await axios(config)
                 setStatus(res.status)
-                // console.log(res)
+                // console.log(res.data.data.auth_token)
+                dispatch({type: 'login', payload:res.data.data.auth_token})
                 // console.log(status)
             }
             catch {
@@ -77,6 +78,7 @@ const Register = () => {
     //     setUsername('')
     // }
 
+    // console.log(state);
 
     return (
         <div className="container register">

@@ -1,3 +1,15 @@
 .home {
+  h1 {
+    color: white;
+    padding-top: 10%;
+    font-size: 50px;
+    height: 300px;
     
+    background: rgba($color: #000000, $alpha: 0.3)
+      url('https://dlq00ggnjruqn.cloudfront.net/prometheus/getImage?id=322298');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+  }
 }

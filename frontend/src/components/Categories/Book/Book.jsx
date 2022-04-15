@@ -44,14 +44,17 @@ const Book = (props) => {
               <div className="img-product">
                 <img src={item.image} alt="" />
               </div>
-              <div className="title-product">
-                <span>{item.title}</span>
-              </div>
               <div className="des-product">
                 <span>{item.description}</span>
               </div>
+              <div className="title-product">
+                <span>{item.title}</span>
+              </div>
               <div className="price-product">
-                <span>{item.price}</span>
+                <span>{new Intl.NumberFormat('it-IT', {
+                  style: 'currency',
+                  currency: 'VND',
+                }).format(item.price)}</span>
               </div>
               <div className="btn">
                 <button>Add to cart</button>
