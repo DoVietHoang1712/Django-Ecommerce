@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import './_register.scss';
+// import './_register.scss';
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import axios from 'axios';
+import '../Login/Login.scss'
 const Register = () => {
 
   const [register, setRegister] = useState({

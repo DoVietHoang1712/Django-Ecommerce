@@ -1,13 +1,13 @@
-from product.models import ProductItem
-from .serializers import ProductItemSerializer
+from product.models import Book, ProductItem
+from .serializers import BookSerializer, ProductItemSerializer
 
 class ProductDAO:
+
+    def get_by_id(self):
+        pass
+
     def get_all(self):
         pass
-    
-    def get_by_id(self, id):
-        data = ProductItem.objects.get(id=id)
-        return ProductItemSerializer(data).data
 
     def search_by_name(self, name):
         pass
