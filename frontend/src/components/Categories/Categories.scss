@@ -1,0 +1,42 @@
+.categories{
+    .categories-list{
+        display: flex;
+    }
+    .categories-content{
+        .active{
+            display: block;
+        }
+        .non-active{
+            display: none;
+        }
+        .product{
+            width: 25%;
+            .product-cover{
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+                border-radius: 6px;
+                .img-product{
+                    img{
+                        
+                    }
+                }
+                .price-product, .title-product, .des-product{
+                    font-family: "Alata", sans-serif;
+                    
+                }
+                .btn{
+                    button{
+                        background-color: rgb(17, 17, 17);
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 4px;
+                    
+                        &:hover{
+                            background-color: rgb(32, 32, 32);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
