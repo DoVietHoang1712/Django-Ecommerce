@@ -1,0 +1,68 @@
+.categories {
+  background-color: rgb(241, 241, 241);
+  .categories-list {
+    display: flex;
+    padding-left: 20px;
+    .active-tab{
+        background-color: rgb(255, 255, 255);
+        // padding: 10px 20px;
+        color: rgb(47, 150, 22);
+    }
+  }
+  .categories-content {
+    padding: 0px 10px;
+    .active {
+      display: block;
+    }
+    .non-active {
+      display: none;
+    }
+    .product {
+      width: 25%;
+      .product-cover {
+        width: 90%;
+        margin: 10px auto;
+        padding-bottom: 20px;
+        background-color: white;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+          rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        border-radius: 6px;
+        .img-product {
+          img {
+          }
+        }
+        .price-product,
+        .title-product,
+        .des-product {
+          text-transform: capitalize;
+        }
+
+        .price-product {
+          color: rgb(247, 164, 11);
+          font-size: 15px;
+        }
+        .title-product {
+          font-weight: bold;
+          font-size: 18px;
+        }
+        .des-product {
+          color: rgb(17, 122, 3);
+          font-size: 15px;
+        }
+        .btn {
+          button {
+            background-color: rgba(104, 163, 36, 0.945);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+
+            &:hover {
+              background-color: rgba(120, 199, 30, 0.945);;
+            }
+          }
+        }
+      }
+    }
+  }
+}
