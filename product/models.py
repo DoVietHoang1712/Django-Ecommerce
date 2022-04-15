@@ -36,3 +36,4 @@ class ProductItem(models.Model):
     electronic = models.OneToOneField(Electronic, on_delete=models.CASCADE, null=True)
     clothes = models.OneToOneField(Clothes, on_delete=models.CASCADE, null=True)
     laptop = models.OneToOneField(Laptop, on_delete=models.CASCADE, null=True)
+    detail = models.TextField(max_length=100, default="")

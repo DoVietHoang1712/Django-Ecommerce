@@ -2,22 +2,31 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from .dao_imp import BookDAOImp, ClothesDAOImp, ElectronicDAOImp, LaptopDAOImp
 # Create your views here.
 
 class BookAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
 
-    def list(self, request, *args, **kwargs):
+    @api_view(['GET'])
+    @renderer_classes((TemplateHTMLRenderer, JSONRenderer))
+    def list(request, *args, **kwargs):
         dao = BookDAOImp()
         name = request.query_params.get('name', None)
         if name:
-            return Response(dao.search_by_name(name))
+            data = dao.search_by_name(name)
+            return Response(data)
         return Response(dao.get_all())
-
-    def retrieve(self, request, *args, **kwargs):
+    
+    @api_view(['GET'])
+    @renderer_classes((TemplateHTMLRenderer, JSONRenderer))
+    def retrieve(request, *args, **kwargs):
         dao = BookDAOImp()
-        return Response(dao.get_by_id(kwargs['id']))
+        data = dao.get_by_id(kwargs['id'])
+        print(data)
+        return Response(data)
 
 class LaptopAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
