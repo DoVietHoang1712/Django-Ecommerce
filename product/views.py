@@ -8,16 +8,20 @@ from .dao_imp import BookDAOImp, ClothesDAOImp, ElectronicDAOImp, LaptopDAOImp
 class BookAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
 
-    def list(self, request, *args, **kwargs):
+    def list(self,request, *args, **kwargs):
         dao = BookDAOImp()
         name = request.query_params.get('name', None)
         if name:
-            return Response(dao.search_by_name(name))
+            data = dao.search_by_name(name)
+            print(data)
+            return Response(data)
         return Response(dao.get_all())
-
-    def retrieve(self, request, *args, **kwargs):
+    
+    def retrieve(self,request, *args, **kwargs):
         dao = BookDAOImp()
-        return Response(dao.get_by_id(kwargs['id']))
+        data = dao.get_by_id(kwargs['pk'])
+        print(data)
+        return Response(data)
 
 class LaptopAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -31,7 +35,7 @@ class LaptopAPIViewSet(ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         dao = LaptopDAOImp()
-        return Response(dao.get_by_id(kwargs['id']))
+        return Response(dao.get_by_id(kwargs['pk']))
 
 class ElectronicAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -45,7 +49,7 @@ class ElectronicAPIViewSet(ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         dao = ElectronicDAOImp()
-        return Response(dao.get_by_id(kwargs['id']))
+        return Response(dao.get_by_id(kwargs['pk']))
 
 class ClothesAPIViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -59,4 +63,4 @@ class ClothesAPIViewSet(ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         dao = ClothesDAOImp()
-        return Response(dao.get_by_id(kwargs['id']))
+        return Response(dao.get_by_id(kwargs['pk']))
