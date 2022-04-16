@@ -1,5 +1,4 @@
 import React from 'react';
-
 const Book = (props) => {
   const books = [
     {
@@ -35,6 +34,10 @@ const Book = (props) => {
         'https://dictionary.cambridge.org/images/thumb/book_noun_001_01679.jpg?version=5.0.230',
     },
   ];
+  console.log(props)
+  const handleClickAddToCart = () => {
+    props.handleAddToCart()
+  }
   return (
     <div className={`book container ${props.active ? 'active' : 'non-active'}`}>
       <div className="row">
@@ -57,7 +60,9 @@ const Book = (props) => {
                 }).format(item.price)}</span>
               </div>
               <div className="btn">
-                <button>Add to cart</button>
+                <button
+                  onClick={handleClickAddToCart}
+                >Add to cart</button>
               </div>
             </div>
           </div>
