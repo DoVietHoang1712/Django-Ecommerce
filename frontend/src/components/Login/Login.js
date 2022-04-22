@@ -57,11 +57,11 @@ const Register = () => {
                 const res = await axios(config)
                 setStatus(res.status)
                 // console.log(res.data.data.auth_token)
-                dispatch({type: 'login', payload:res.data.data.auth_token})
+                dispatch({ type: 'login', payload: res.data.data.auth_token })
                 // console.log(status)
             }
-            catch {
-                // console.log('catch')
+            catch (e) {
+                console.log(e)
                 setStatus(0)
             }
         }
@@ -111,7 +111,7 @@ const Register = () => {
                 </div>
             </div>
         </div>
-  )
+    )
 };
 
 export default Register;

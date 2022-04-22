@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+
+.loading{
+  background-color: #fff;
+  img{
+    background-color: rgb(181, 62, 62);
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+}

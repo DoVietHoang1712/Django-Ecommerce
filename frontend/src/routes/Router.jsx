@@ -4,14 +4,19 @@ import Home from '../components/Home/Home';
 import Register from '../components/Register/Register';
 import Login from '../components/Login/Login';
 import Account from '../components/Account/Account';
+import ProductDetail from '../components/Categories/ProductDetail/ProductDetail'
 const Router = () => {
   return (
-    <Routes>
-      <Route path='/home' element={<Home />} />
-      <Route path='/sign-up' element={<Register />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/account' element={<Account/>}/>
-    </Routes>
+    <>
+      <Routes>
+        <Route path='/home' element={<Home />} />
+        <Route path='/sign-up' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/account' element={<Account />} />
+        <Route path='/:category/:id' element={<ProductDetail />} />
+      </Routes>
+    </>
+
   )
 }
 
