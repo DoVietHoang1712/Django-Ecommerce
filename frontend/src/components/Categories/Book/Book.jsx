@@ -1,75 +1,94 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import loading from '../../../assets/img/loading.gif';
+import { useNavigate } from 'react-router-dom'
 const Book = (props) => {
-  const books = [
-    {
-      id: '1',
-      title: 'book 1',
-      description: 'book 1',
-      price: 234,
-      image:
-        'https://dictionary.cambridge.org/images/thumb/book_noun_001_01679.jpg?version=5.0.230',
-    },
-    {
-      id: '2',
-      title: 'book 2',
-      description: 'book 2',
-      price: 234,
-      image:
-        'https://dictionary.cambridge.org/images/thumb/book_noun_001_01679.jpg?version=5.0.230',
-    },
-    {
-      id: '3',
-      title: 'book 3',
-      description: 'book 3',
-      price: 234,
-      image:
-        'https://dictionary.cambridge.org/images/thumb/book_noun_001_01679.jpg?version=5.0.230',
-    },
-    {
-      id: '4',
-      title: 'book 4',
-      description: 'book 4',
-      price: 234,
-      image:
-        'https://dictionary.cambridge.org/images/thumb/book_noun_001_01679.jpg?version=5.0.230',
-    },
-  ];
-  console.log(props)
+  const navigate = useNavigate()
+  const [books, setBooks] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  useEffect(() => {
+    var config = {
+      method: 'get',
+      url: 'http://127.0.0.1:8000/product/book',
+      headers: {
+        'Authorization': 'Token ba263a79474576fff23ddc970418aefe38fd702c'
+      }
+    };
+
+    axios(config)
+      .then(function (response) {
+        // console.log(response.data.data);
+        if (response?.data?.data && response.data.data.length > 0) {
+          let rawBook = response.data.data
+          // console.log(">>>rawBook: ", rawBook);
+          rawBook = rawBook.map((item) => {
+            let obj = {}
+            obj.id = item.book.id
+            obj.name = item.book.name
+            obj.price = item.price
+            obj.image = item.image
+            // console.log('>>>obj:', obj)
+            return obj
+          })
+          setBooks(rawBook)
+          setIsLoading(false)
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }, [])
+
+  // console.log(">>>books:", books)
+  // console.log(props)
   const handleClickAddToCart = () => {
     props.handleAddToCart()
   }
+
+  const handleToDetail = (product) => {
+    // console.log(product.id)
+    navigate(`/book/${product.id}`)
+  }
+
   return (
     <div className={`book container ${props.active ? 'active' : 'non-active'}`}>
-      <div className="row">
-        {books.map((item, index) => (
-          <div className="product" key={index}>
-            <div className="product-cover">
-              <div className="img-product">
-                <img src={item.image} alt="" />
-              </div>
-              <div className="des-product">
-                <span>{item.description}</span>
-              </div>
-              <div className="title-product">
-                <span>{item.title}</span>
-              </div>
-              <div className="price-product">
-                <span>{new Intl.NumberFormat('it-IT', {
-                  style: 'currency',
-                  currency: 'VND',
-                }).format(item.price)}</span>
-              </div>
-              <div className="btn">
-                <button
-                  onClick={handleClickAddToCart}
-                >Add to cart</button>
+      {isLoading ?
+        (<div className="loading"><img src={loading} alt="" /></div>)
+        :
+        <div className="row">
+          {books.map((item, index) => (
+            <div className="product" key={index}>
+              <div
+                className="product-cover">
+                <div
+                  onClick={() => handleToDetail(item)}
+                  className="img-product">
+                  <img src={item.image} alt="" />
+                </div>
+                <div className="name-product">
+                  <span>{item.name}</span>
+                </div>
+                <div className="price-product">
+                  <span>
+                    {new Intl.NumberFormat('it-IT', {
+                      style: 'currency',
+                      currency: 'VND',
+                    }).format(item.price)}
+                  </span>
+                </div>
+                <div className="btn">
+                  <button
+                    onClick={handleClickAddToCart}
+                  >Add to cart</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          ))}
+        </div>}
+    </div >
   );
 };
 
 export default Book;
+
