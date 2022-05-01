@@ -35,10 +35,10 @@ class CartAPIView(ModelViewSet):
         cart, is_created_cart = Cart.objects.get_or_create(user=user)
         if is_created_cart:
             cart.save()
-        cart_item, is_created_item = CartItem.objects.get_or_create(cart=cart, item=item, quantity=quantity)
-        if is_created_item:
-            CartItem.objects.create(cart=cart, item=item, quantity = quantity).save()
-        else:
+        try:
+            cart_item = CartItem.objects.get(cart=cart, item=item)
             cart_item.quantity = cart_item.quantity + quantity
             cart_item.save()
+        except:
+            CartItem.objects.create(cart=cart, item=item, quantity = quantity).save()
         return Response(status=200)
