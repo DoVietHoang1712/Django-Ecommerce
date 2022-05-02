@@ -1,0 +1,44 @@
+.cart-container{
+    .cart-item{
+        display:flex;
+        height:200px;
+        box-shadow: 0 0 4px #ccc;
+        border-radius:10px;
+        margin-top: 20px;
+        align-items:center;
+        font-size: 26px;
+        font-weight: 500;
+        .cart-img{
+            height: 80%;
+            margin-left: 20px;
+        }
+        .cart-text{
+            flex:1;
+            display:flex;
+            justify-content:space-around;
+            .cart-name{
+            
+            }
+            .cart-quantity{
+                
+            }
+            .cart-price{
+                
+            }
+            .cart-delete{
+                
+            }
+        }
+    }
+        
+        .cart-empty {
+            height: 300px;
+            position: relative;
+            top: 200px;
+            img{
+                height: 100%;
+            }
+        }
+      
+
+}
