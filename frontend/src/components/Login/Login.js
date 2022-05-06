@@ -56,7 +56,7 @@ const Register = () => {
                 };
                 const res = await axios(config)
                 setStatus(res.status)
-                if (res?.data?.data?.auth_token) console.log(res.data.data.auth_token)
+                // if (res?.data?.data?.auth_token) console.log(res.data.data.auth_token)
                 dispatch({ type: 'login', payload: res.data.data.auth_token })
                 // console.log(status)
             }
