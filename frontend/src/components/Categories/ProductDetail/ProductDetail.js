@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './ProductDetail.scss'
 import loading from '../../../assets/img/loading.gif';
+import AddToCartSuccess from '../../message/AddToCartSuccess';
 const ProductDetail = () => {
     const params = useParams()
     const nav = useNavigate()
     const [detail, setDetail] = useState({})
+    const [isAddToCart, setIsAddToCart] = useState(false)
     const [quantity, setQuantity] = useState(1)
     const [isLoading, setIsLoading] = useState(true)
     const { category, id } = params
@@ -78,10 +80,10 @@ const ProductDetail = () => {
             });
 
     }, [])
-    console.log(detail)
+
+    console.log(detail.idAll)
 
     const handleBackToCategory = () => {
-        // nav(`/${category}`)
         nav(`/home`)
     }
 
@@ -92,6 +94,36 @@ const ProductDetail = () => {
     let isEmpty = Object.keys(detail).length === 0
     console.log(isEmpty)
 
+
+    const handleAddToCart = () => {
+        var data = JSON.stringify({
+            "id": detail.idAll,
+            "quantity": quantity
+        });
+
+        var config = {
+            method: 'post',
+            url: 'http://127.0.0.1:8000/cart/add_to_cart/',
+            headers: {
+                'Authorization': `Token ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        setIsAddToCart(!isAddToCart)
+        setTimeout(() => {
+            setIsAddToCart(false)
+        }, 2000)
+    }
 
     return (
         <div className="pd-container">
@@ -163,13 +195,15 @@ const ProductDetail = () => {
                                     className="pd-atc-add">+</span>
                             </div>
                             <div className="pd-atc-btn">
-                                <button>Add to cart</button>
+                                <button onClick={handleAddToCart}> Add to cart</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            )}
-        </div>
+            )
+            }
+            {isAddToCart && <AddToCartSuccess />}
+        </div >
     )
 }
 

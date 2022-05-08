@@ -7,10 +7,11 @@ import Account from '../components/Account/Account';
 import ProductDetail from '../components/Categories/ProductDetail/ProductDetail'
 import Cart from '../components/Cart/Cart'
 const Router = () => {
+  const token = localStorage.token
   return (
     <>
       <Routes>
-        <Route path='/home' element={<Home />} />
+        <Route path='/home/' element={<Home />} />
         <Route path='/sign-up' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/account' element={<Account />} />

@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './Navbar.scss'
 const Navbar = () => {
+  const token = localStorage.token
   return (
-    <div>
+    <div className="nav-container">
       <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
         <button
           className="navbar-toggler"
@@ -37,26 +39,32 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="sign-up">
-                Sign up
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="login">
-                Login
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="account">
-                Account
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="cart">
-                Cart
-              </NavLink>
-            </li>
+            {!token &&
+              <li className="nav-item">
+                <NavLink className="nav-link" to="login">
+                  Login
+                </NavLink>
+              </li>
+            }
+            {!token &&
+              <li className="nav-item">
+                <NavLink className="nav-link" to="sign-up">
+                  Sign up
+                </NavLink>
+              </li>
+            }
+            {token &&
+              <li className="nav-item">
+                <NavLink className="nav-link" to="account">
+                  Account
+                </NavLink>
+              </li>}
+            {token &&
+              <li className="nav-item">
+                <NavLink className="nav-link" to="cart">
+                  Cart
+                </NavLink>
+              </li>}
           </ul>
         </div>
       </nav>

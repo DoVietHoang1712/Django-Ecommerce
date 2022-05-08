@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Categories from '../Categories/Categories';
+import Product from '../Categories/Product';
 import './Home.scss'
 import AddToCartSuccess from '../message/AddToCartSuccess'
 const Home = () => {
@@ -9,7 +9,6 @@ const Home = () => {
     setTimeout(() => {
       setIsAddToCart(false)
     }, 2000)
-    // console.log(isAddToCart)
   }
   return (
     <div className="home">
@@ -18,7 +17,7 @@ const Home = () => {
           <h1>E commerce</h1>
         </div>
         <div className="category">
-          <Categories handleAddToCart={handleAddToCart} />
+          <Product handleAddToCart={handleAddToCart} />
         </div>
       </div>
       {isAddToCart && <AddToCartSuccess />}

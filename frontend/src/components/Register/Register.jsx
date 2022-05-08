@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-// import './_register.scss';
 import { useState, useEffect } from 'react';
 import qs from 'qs';
 import axios from 'axios';
@@ -22,7 +21,6 @@ const Register = () => {
 
   const { firstname, lastname, email, username, password } = register
   const handleSubmit = () => {
-    // console.log(register)
     setPost({ username, password, email })
   }
 
@@ -50,7 +48,6 @@ const Register = () => {
       });
 
   }, [post])
-  // console.log(post)
   return (
     <div className="container register">
       <div className="row cover mx-auto mt-4">

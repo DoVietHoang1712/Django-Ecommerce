@@ -1,46 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 import './Account.scss';
-// import { Context } from '../../store/Context';
+import { Context } from '../../store/Context';
+import * as actions from '../../store/actions';
 const Account = () => {
   const [data, setData] = useState({});
-
-  // const [state,] = useContext(Context);
-  // console.log(state);
-  // const navigate = useNavigate();
+  const [state, dispatch] = useContext(Context)
+  // console.log(state, dispatch)
+  // console.log(actions.setToken)
+  const navigate = useNavigate()
   // if(state.token == null){
   //     navigate('/login');
   // }
 
   const [isLoading, SetLoading] = useState(true);
   useEffect(() => {
-    // var config = {
-    //   method: 'get',
-    //   url: 'http://localhost:8000/user/me',
-    //   headers: {
-    //     Authorization: 'Token ba263a79474576fff23ddc970418aefe38fd702c',
-    //   },
-    // };
-    // axios(config)
-    //   .then(function (response) {
-    //     console.log(response);
-    //     setData(response.data);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
     var config = {
       method: 'get',
       url: 'http://localhost:8000/user/me',
       headers: {
         // Authorization: `Token ${state}`
-        Authorization: 'Token ba263a79474576fff23ddc970418aefe38fd702c',
+        Authorization: `Token ${localStorage.token}`,
       },
     };
     axios(config)
       .then(function (response) {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setData(response.data.data);
         SetLoading(false);
       })
@@ -48,10 +35,18 @@ const Account = () => {
         console.log(error);
       });
   }, []);
-  console.log(data);
+  // console.log(data);
   let isEmpty = Object.keys(data).length === 0;
-  console.log(isEmpty);
+  // console.log(isEmpty);
   const { id, username, date_joined, email, is_staff } = data;
+
+
+  const handleLogOut = () => {
+    localStorage.setItem('token', '')
+    dispatch(actions.setToken(''))
+    navigate('/home')
+  }
+
   return (
     <div className="account container">
       <div className="row">
@@ -64,29 +59,30 @@ const Account = () => {
           </div>
           <hr />
           <div className="mt-4">
-            <Link to="/cart">My cart</Link>
+            <Link to="/cart">Go To Cart <i className="fas fa-angle-right"><i className="fas fa-angle-right"></i></i></Link>
           </div>
         </div>
         <div className="col-md-8 infor-user">
-          <h3>My infor</h3>
+          <h3>Account Information</h3>
           {isLoading ? (
             <div style={{ textAlign: 'left' }}>is loading data...</div>
           ) : (
             <div style={{ textAlign: 'left' }}>
-              <div>Tên đăng nhâp: {username}</div>
+              <div>User name: {username}</div>
               <div>ID: {id}</div>
               <div>Email: {email}</div>
-              <div>Ngày đăng ký: {date_joined}</div>
+              <div>Registration Date: {moment(date_joined).format('DD/MM/YYYY')}</div>
 
               <div>
-                Vị trí:{' '}
-                {is_staff ? <sapn>Nhân viên</sapn> : <span>Khách hàng</span>}
+                Position:{' '}
+                {is_staff ? <span>Staff</span> : <span>Customer</span>}
               </div>
             </div>
           )}
         </div>
+        <div className="log-out"><button onClick={handleLogOut}>Log Out</button></div>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -3,41 +3,23 @@ import './Login.scss';
 import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { Context } from '../../store/Context';
+import * as actions from '../../store/actions';
+const Login = () => {
 
-const Register = () => {
+    const [state, dispatch] = useContext(Context)
+    // console.log(state, dispatch)
+    // console.log(actions.setToken)
     const [status, setStatus] = useState(1)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [post, setPost] = useState({ username: '', password: '' })
     const navigate = useNavigate();
 
-    const [state, dispatch] = useContext(Context);
     const handleLogin = () => {
         setPost({ username: username, password: password })
     }
-
-    // useEffect(() => {
-    //     var data = qs.stringify({
-    //         'username': login.username,
-    //         'password': login.password
-    //     });
-    //     var config = {
-    //         method: 'post',
-    //         url: 'http://127.0.0.1:8000/auth/token/login/',
-    //         headers: {
-    //             'Content-Type': 'application/x-www-form-urlencoded'
-    //         },
-    //         data: data
-    //     };
-    //     axios(config)
-    //         .then((response) => {
-    //             setStatus(response.status)
-    //         })
-    //     if (status == 1) setStatus(0)
-    //     console.log(status)
-    // }, [login])
 
     useEffect(() => {
         async function fetchData() {
@@ -56,8 +38,11 @@ const Register = () => {
                 };
                 const res = await axios(config)
                 setStatus(res.status)
-                // if (res?.data?.data?.auth_token) console.log(res.data.data.auth_token)
-                dispatch({ type: 'login', payload: res.data.data.auth_token })
+                if (res?.data?.data?.auth_token) {
+                    // console.log(res.data.data.auth_token)
+                    localStorage.setItem('token', res.data.data.auth_token)
+                    dispatch(actions.setToken(res.data.data.auth_token))
+                }
                 // console.log(status)
             }
             catch (e) {
@@ -114,7 +99,7 @@ const Register = () => {
     )
 };
 
-export default Register;
+export default Login;
 
 
 
