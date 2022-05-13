@@ -19,7 +19,7 @@ const ProductDetail = () => {
             method: 'get',
             url: `http://127.0.0.1:8000/product/${category}/${id}`,
             headers: {
-                'Authorization': 'Token ba263a79474576fff23ddc970418aefe38fd702c'
+                'Authorization': `Token ${localStorage.token}`
             }
         };
 

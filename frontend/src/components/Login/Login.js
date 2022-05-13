@@ -54,7 +54,7 @@ const Login = () => {
     }, [post]);
 
     if (status == 200) {
-        navigate('/home');
+        navigate('/');
     }
     // if (status == 0 && post.username != '' && post.password != '') {
     //     alert('Bạn đã nhập sai thống tin đăng nhập')

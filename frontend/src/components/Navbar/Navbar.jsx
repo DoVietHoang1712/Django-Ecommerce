@@ -35,7 +35,7 @@ const Navbar = () => {
           </form>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" to="home">
+              <NavLink className="nav-link" to="/">
                 Home
               </NavLink>
             </li>
@@ -63,6 +63,12 @@ const Navbar = () => {
               <li className="nav-item">
                 <NavLink className="nav-link" to="cart">
                   Cart
+                </NavLink>
+              </li>}
+            {token &&
+              <li className="nav-item">
+                <NavLink className="nav-link" to="order">
+                  Order
                 </NavLink>
               </li>}
           </ul>
