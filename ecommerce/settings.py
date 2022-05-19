@@ -113,8 +113,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'ecommerce',
         'USER': 'root',
-        'PASSWORD': 'ecommerce',
-        'HOST': '18.141.13.60',   # Or an IP Address that your DB is hosted on
+        'PASSWORD': '17122000',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306'
     }
 }
@@ -175,27 +175,30 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://127.0.0.1:8000',
 ]
 # Setting logging service
-# LOGGING = {
-#     "loggers": {
-#         "django": {
-#             "handlers": ["file"],
-#             "level": "DEBUG",
-#         }
-#     },
-#     "handlers": {
-#         "file": {
-#             "level": "DEBUG",
-#             "class": "logging.FileHandler",
-#             "filename": "./logs/debug.log"
-#         }
-#     },
-#     "formatters": {
-#         "simpleRe": {
-#             "format": '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-#             "style": "{"
-#         }
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './logs/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+    "formatters": {
+        "simpleRe": {
+            "format": '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            "style": "{"
+        }
+    },
+}
 # Service email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = ''
