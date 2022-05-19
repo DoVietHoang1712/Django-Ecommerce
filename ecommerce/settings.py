@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -173,3 +174,32 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://127.0.0.1:8000',
 ]
+# Setting logging service
+# LOGGING = {
+#     "loggers": {
+#         "django": {
+#             "handlers": ["file"],
+#             "level": "DEBUG",
+#         }
+#     },
+#     "handlers": {
+#         "file": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": "./logs/debug.log"
+#         }
+#     },
+#     "formatters": {
+#         "simpleRe": {
+#             "format": '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+#             "style": "{"
+#         }
+#     },
+# }
+# Service email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'hoang171220002@gmail.com'
+EMAIL_HOST_PASSWORD = '17122000'
