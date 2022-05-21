@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { OrderContext } from '../../store/OrderContext';
 import axios from 'axios';
 import './Checkout.scss';
+import { useNavigate } from 'react-router-dom'
 
 const Order = () => {
   const [listProduct, setListProduct] = useContext(OrderContext);
@@ -10,9 +11,11 @@ const Order = () => {
   const [shipmentFee, setShipmentFee] = useState([14850, 18300, 44100]);
   const [shipmentType, setShipmentType] = useState(0);
   const [paymentType, setPaymentType] = useState('Thanh toán khi nhận hàng;');
-
   const [note, setNote] = useState('');
   const [address, setAddress] = useState('');
+
+  const nav = useNavigate()
+
   console.log(listProduct);
   useEffect(() => {
     var config = {
@@ -39,6 +42,9 @@ const Order = () => {
   );
 
   const createOrder = () => {
+
+    // console.log('createOrder')
+
     var data = JSON.stringify({
       cartItem: listProduct,
       shipment: {
@@ -62,7 +68,7 @@ const Order = () => {
       method: 'post',
       url: 'http://127.0.0.1:8000/order/',
       headers: {
-        Authorization:  `Token ${localStorage.token}`,
+        Authorization: `Token ${localStorage.token}`,
         'Content-Type': 'application/json',
       },
       data: data,
@@ -71,10 +77,14 @@ const Order = () => {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        nav('/order')
+
       })
       .catch(function (error) {
         console.log(error);
       });
+
+
   };
   // console.log(user);
   return (

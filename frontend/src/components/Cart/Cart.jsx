@@ -111,7 +111,6 @@ function Cart() {
     });
   };
 
-  // console.log("list product",listProduct);
 
   const handleTotal = () => {
     if (listProduct.length > 0) {
@@ -122,6 +121,12 @@ function Cart() {
     }
     return 0;
   };
+  let cartCop = cart
+  const handleDeleteCartItem = (product) => {
+    cartCop = cart.filter((item) => item.id !== product.id)
+    setCart(cartCop)
+    console.log('cart:', cartCop)
+  }
   const total = handleTotal();
   let isArray = Array.isArray(cart);
   return (
@@ -167,7 +172,9 @@ function Cart() {
                   currency: 'VND',
                 })}
               </span>
-              <span className="cart-delete">
+              <span
+                onClick={() => handleDeleteCartItem(item)}
+                className="cart-delete">
                 <i className="far fa-times-circle"></i>
               </span>
             </div>

@@ -66,7 +66,7 @@ const Order = () => {
           {order.map((item, index) => (
             <details key={index} className="order">
               <summary className="row">
-                <div className="col-md-2">Mã đơn#{item.id}</div>
+                <div className="col-md-2">Mã đơn #00{index + 1}</div>
                 <div className="col-md-3">{item.create_at}</div>
                 <div className="col-md-3">
                   {item.payment.total.toLocaleString('it-IT', {
@@ -80,7 +80,7 @@ const Order = () => {
                 <div className="col-md-1">
                   <div
                     className="btn btn-primary"
-                    // onClick={() => setDisplay(!display)}
+                  // onClick={() => setDisplay(!display)}
                   >
                     Chi tiết
                   </div>
